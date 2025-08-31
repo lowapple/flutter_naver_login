@@ -179,17 +179,19 @@ public class FlutterNaverLoginPlugin: NSObject, FlutterPlugin {
         }
 
         // 로그인 동작 설정
-        if let behavior = args["loginBehavior"] as? String {
-            switch behavior.lowercased() {
-            case "web":
-                NidOAuth.shared.setLoginBehavior(.inAppBrowser)
-            case "app":
-                NidOAuth.shared.setLoginBehavior(.app)
-            default:
-                print("Unknown login behavior: \(behavior)")
-                break
-            }
-        }
+        // if let behavior = args["loginBehavior"] as? String {
+        //     switch behavior.lowercased() {
+        //     case "web":
+        //         NidOAuth.shared.setLoginBehavior(.inAppBrowser)
+        //     case "app":
+        //         NidOAuth.shared.setLoginBehavior(.app)
+        //     default:
+        //         print("Unknown login behavior: \(behavior)")
+        //         break
+        //     }
+        // }
+
+        NidOAuth.shared.setLoginBehavior(.appPreferredWithInAppBrowserFallback)
 
         // SDK 초기화 완료 후 결과 전송
         sendResult(status: .loggedOut)
